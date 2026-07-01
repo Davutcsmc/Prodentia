@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/API/" />
+  <Folder Name="/Core/">
+    <Project Path="Core/Prodentia.Domain/Prodentia.Domain.csproj" Id="55607619-b337-48e6-bcfc-0efbff5ebc13" />
+  </Folder>
+  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Prodentia.Tests/Prodentia.Tests.csproj" Id="f99c43e7-3314-4376-9d94-7b7178613b14" />
+  </Folder>
+</Solution>
