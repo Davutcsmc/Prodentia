@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Prodentia.Persistence.UnitsOfWork
+namespace Prodentia.Persistance.UnitsOfWork
 {
     public class UnitOfWorkEFCore : IUnitOfWork
     {
@@ -13,9 +13,10 @@ namespace Prodentia.Persistence.UnitsOfWork
         {
             _context = context;
         }
-        public Task Commit()
+
+        public async Task Commit()
         {
-            return _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public Task Rollback()

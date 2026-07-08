@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Prodentia.Persistence.Repositories
+namespace Prodentia.Persistance.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -13,7 +13,7 @@ namespace Prodentia.Persistence.Repositories
         public Repository(ProdentiaDbContext context)
         {
             _context = context;
-        }               
+        }
 
         public Task<T> AddAsync(T entity)
         {

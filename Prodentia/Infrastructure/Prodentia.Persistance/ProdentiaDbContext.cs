@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prodentia.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Prodentia.Persistance.Configurations;
 
-namespace Prodentia.Persistence
+namespace Prodentia.Persistance
 {
     public class ProdentiaDbContext : DbContext
     {
@@ -14,14 +12,16 @@ namespace Prodentia.Persistence
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProdentiaDbContext).Assembly);
-            base.OnModelCreating(modelBuilder);
-        }
-
         protected ProdentiaDbContext() { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DentalOfficeConfig).Assembly);
+        }
+
+
         public DbSet<DentalOffice> DentalOffices { get; set; }
+
     }
 }

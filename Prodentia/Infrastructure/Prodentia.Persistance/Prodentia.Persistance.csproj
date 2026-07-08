@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Prodentia.Application\Prodentia.Application.csproj" />
+    <ProjectReference Include="..\..\Core\Prodentia.Application\Prodentia.Application.csproj" />
   </ItemGroup>
 
 </Project>

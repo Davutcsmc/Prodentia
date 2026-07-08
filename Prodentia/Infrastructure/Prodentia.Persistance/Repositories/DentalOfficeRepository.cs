@@ -4,14 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Prodentia.Persistence.Repositories
+namespace Prodentia.Persistance.Repositories
 {
     public class DentalOfficeRepository : Repository<DentalOffice>, IDentalOfficeRepository
     {
-        public DentalOfficeRepository(ProdentiaDbContext context) 
-            : base(context) 
+        public DentalOfficeRepository(ProdentiaDbContext context) : base(context)
         {
-            
         }
+
     }
 }
