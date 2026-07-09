@@ -1,0 +1,14 @@
+@Prodentia.API_HostAddress = http://localhost:5022/api/dentaloffices
+
+GET {{Prodentia.API_HostAddress}}/019F424C-F21E-7CCD-A945-EFF0633DA7DF
+Accept: application/json
+
+###
+
+POST {{Prodentia.API_HostAddress}}
+Content-Type: application/json
+{
+  "name": "Dental Office A002"
+}
+
+###

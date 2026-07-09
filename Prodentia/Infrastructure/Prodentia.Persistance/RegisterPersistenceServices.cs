@@ -12,7 +12,7 @@ namespace Prodentia.Persistance
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
             services.AddDbContext<ProdentiaDbContext>(options =>
-                options.UseSqlServer("YourConnectionStringHere"));
+                options.UseSqlServer("name=ProdentiaConnectionString"));
 
             services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
 
