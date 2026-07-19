@@ -15,7 +15,43 @@ namespace Prodentia.Application.Utilities
 
         public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
         {
+            await ApplyValidations(request);
 
+            var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
+
+            var handler = _serviceProvider.GetService(handlerType);
+
+            if (handler == null)
+            {
+                throw new MediatorException($"Handler not found for request type {request.GetType().Name}");
+            }
+
+            var method = handlerType.GetMethod("Handle");
+
+            return await (Task<TResponse>)method.Invoke(handler, new object[] { request })!;
+        }
+
+        public async Task Send(IRequest request)
+        {
+            await ApplyValidations(request);
+
+            var handlerType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
+
+            var handler = _serviceProvider.GetService(handlerType);
+
+            if (handler == null)
+            {
+                throw new MediatorException($"Handler not found for request type {request.GetType().Name}");
+            }
+
+            var method = handlerType.GetMethod("Handle");
+
+            await (Task)method.Invoke(handler, new object[] { request })!;
+
+        }
+
+        private async Task ApplyValidations(object request)
+        {
             var validatorType = typeof(IValidator<>).MakeGenericType(request.GetType());
 
             var validator = _serviceProvider.GetService(validatorType);
@@ -38,19 +74,6 @@ namespace Prodentia.Application.Utilities
                     throw new ValidationException(validationResult.Errors);
                 }
             }
-
-            var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
-
-            var handler = _serviceProvider.GetService(handlerType);
-
-            if (handler == null)
-            {
-                throw new MediatorException($"Handler not found for request type {request.GetType().Name}");
-            }
-
-            var method = handlerType.GetMethod("Handle");
-
-            return await (Task<TResponse>)method.Invoke(handler, new object[] { request });
         }
     }
 }
