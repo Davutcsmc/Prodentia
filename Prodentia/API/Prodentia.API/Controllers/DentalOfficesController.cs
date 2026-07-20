@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prodentia.API.DTOs.DentalOffices;
 using Prodentia.Application.Features.DentalOffices.Commands.CreateDentalOffice;
+using Prodentia.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
@@ -48,6 +49,14 @@ namespace Prodentia.API.Controllers
         public async Task<IActionResult> Put(Guid id, UpdateDentalOfficeDTO updateDentalOfficeDTO)
         {
             var command = new UpdateDentalOfficeCommand { Id = id, Name = updateDentalOfficeDTO.Name };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeleteDentalOfficeCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();
         }
