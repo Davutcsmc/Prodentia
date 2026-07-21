@@ -4,6 +4,7 @@ using Prodentia.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
+using Prodentia.Application.Features.Patients.Commands.CreateCommand;
 using Prodentia.Application.Utilities;
 
 namespace Prodentia.Application
@@ -23,6 +24,8 @@ namespace Prodentia.Application
             services.AddScoped<IRequestHandler<UpdateDentalOfficeCommand>, UpdateDentalOfficeCommandHandler>();
 
             services.AddScoped<IRequestHandler<DeleteDentalOfficeCommand>, DeleteDentalOfficeCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreatePatientCommand, Guid>, CreatePatientCommandHandler>();
 
             return services;
         }

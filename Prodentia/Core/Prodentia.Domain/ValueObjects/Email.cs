@@ -4,6 +4,11 @@ namespace Prodentia.Domain.ValueObjects
 {
     public class Email
     {
+        public Email()
+        {
+            
+        }
+
         public string Value { get; } = null!;
 
         public Email(string email)

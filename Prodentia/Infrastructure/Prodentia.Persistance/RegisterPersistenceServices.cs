@@ -15,6 +15,7 @@ namespace Prodentia.Persistance
                 options.UseSqlServer("name=ProdentiaConnectionString"));
 
             services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWorkEFCore>();
 

@@ -5,6 +5,10 @@ namespace Prodentia.Domain.Entities
 {
     public class Patient
     {
+        public Patient()
+        {
+            
+        }
         public Guid Id { get; private set; }
         public string Name { get; private set; } = null!;
         public Email Email { get; private set; } = null!;
