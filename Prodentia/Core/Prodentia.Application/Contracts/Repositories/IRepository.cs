@@ -11,5 +11,6 @@ namespace Prodentia.Application.Contracts.Repositories
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        Task<int> GetTotalAmountOfRecords();
     }
 }

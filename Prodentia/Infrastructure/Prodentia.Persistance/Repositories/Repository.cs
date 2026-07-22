@@ -37,6 +37,11 @@ namespace Prodentia.Persistance.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public Task<int> GetTotalAmountOfRecords()
+        {
+            return _context.Set<T>().CountAsync();
+        }
+
         public Task UpdateAsync(T entity)
         {
             _context.Update(entity);
