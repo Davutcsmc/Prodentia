@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prodentia.API.DTOs.Patients;
 using Prodentia.API.Utilities;
+using Prodentia.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using Prodentia.Application.Features.Patients.Commands.CreateCommand;
+using Prodentia.Application.Features.Patients.Commands.DeletePatient;
 using Prodentia.Application.Features.Patients.Commands.UpdatePatient;
 using Prodentia.Application.Features.Patients.Queries;
 using Prodentia.Application.Features.Patients.Queries.GetPatientDetail;
@@ -62,6 +64,14 @@ namespace Prodentia.API.Controllers
 
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var command = new DeletePatientCommand { Id = id };
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }
