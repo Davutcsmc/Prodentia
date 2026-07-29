@@ -2,7 +2,9 @@
 using Prodentia.API.DTOs.Patients;
 using Prodentia.API.Utilities;
 using Prodentia.Application.Features.Patients.Commands.CreateCommand;
+using Prodentia.Application.Features.Patients.Commands.UpdatePatient;
 using Prodentia.Application.Features.Patients.Queries;
+using Prodentia.Application.Features.Patients.Queries.GetPatientDetail;
 using Prodentia.Application.Features.Patients.Queries.GetPatientsList;
 using Prodentia.Application.Utilities;
 
@@ -27,6 +29,14 @@ namespace Prodentia.API.Controllers
             return Ok(result.Items);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PatientDetailDTO>> Get(Guid id)
+        {
+            var query = new GetPatientDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreatePatientDTO createPatientDTO)
         {
@@ -37,6 +47,20 @@ namespace Prodentia.API.Controllers
             };
 
             var result = await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpdatePatientDTO updatePatientDTO)
+        {
+            var command = new UpdatePatientCommand
+            {
+                Id = id,
+                Name = updatePatientDTO.Name,
+                Email = updatePatientDTO.Email
+            };
+
+            await _mediator.Send(command);
             return Ok();
         }
     }

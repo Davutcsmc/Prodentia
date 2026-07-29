@@ -19,8 +19,19 @@ namespace Prodentia.Persistance.Repositories
 
         public async Task<IEnumerable<Patient>> GetFilteredPatientsAsync(PatientsFilterDTO filter)
         {
-            return await _context
-                .Patients
+            var query = _context.Patients.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter.Name))
+            {
+                query = query.Where(p => p.Name.Contains(filter.Name));
+            }
+
+            if (!string.IsNullOrWhiteSpace(filter.Email))
+            {
+                query = query.Where(p => p.Email.Value.Contains(filter.Email));
+            }
+
+            return await query
                 .OrderBy(p => p.Name)
                 .ApplyPagination(filter.PageNumber, filter.PageSize)
                 .ToListAsync();
