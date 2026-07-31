@@ -1,0 +1,33 @@
+@Prodentia.API_HostAddress = http://localhost:5022/api/dentists
+
+###
+GET {{Prodentia.API_HostAddress}}?pageNumber=1&pageSize=5&name=dentist
+Accept: application/json
+
+###
+
+GET {{Prodentia.API_HostAddress}}/019fb7fd-9e42-71cb-bfe0-96b7c7295e9f
+Accept: application/json
+
+###
+
+POST {{Prodentia.API_HostAddress}}
+Content-Type: application/json
+{
+  "name": "dentist3 name",
+  "email": "dentist003@example.com"
+}
+
+###
+
+PUT {{Prodentia.API_HostAddress}}/019fb7fd-9e42-71cb-bfe0-96b7c7295e9e
+Content-Type: application/json
+{
+    "name": "dentist name 002 - u",
+    "email": "dentistuser002@example.comu"
+}
+###
+
+DELETE {{Prodentia.API_HostAddress}}/019fb888-bfe4-76e8-af04-c5c6e34915ed
+
+###

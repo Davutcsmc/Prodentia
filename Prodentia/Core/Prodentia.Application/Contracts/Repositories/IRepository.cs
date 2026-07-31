@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Prodentia.Application.Contracts.Repositories
+﻿namespace Prodentia.Application.Contracts.Repositories
 {
-    public interface IRepository<T> where T : class 
+    public interface IRepository<T> where T : class
     {
         Task<T?> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();

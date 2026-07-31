@@ -4,6 +4,11 @@ using Prodentia.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
+using Prodentia.Application.Features.Dentists.Commands.CreateDentist;
+using Prodentia.Application.Features.Dentists.Commands.DeleteDentist;
+using Prodentia.Application.Features.Dentists.Commands.UpdateDentist;
+using Prodentia.Application.Features.Dentists.Queries.GetDentistDetail;
+using Prodentia.Application.Features.Dentists.Queries.GetDentistsList;
 using Prodentia.Application.Features.Patients.Commands.CreateCommand;
 using Prodentia.Application.Features.Patients.Commands.DeletePatient;
 using Prodentia.Application.Features.Patients.Commands.UpdatePatient;
@@ -40,6 +45,17 @@ namespace Prodentia.Application
 
             services.AddScoped<IRequestHandler<UpdatePatientCommand>, UpdatePatientCommandHandler>();
             services.AddScoped<IRequestHandler<DeletePatientCommand>, DeletePatientCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateDentistCommand, Guid>, CreateDentistCommandHandler>();
+
+            services.AddScoped<IRequestHandler<GetDentistsListQuery, PaginatedDTO<DentistListDTO>>,
+                GetDentistsListQueryHandler>();
+
+            services.AddScoped<IRequestHandler<GetDentistDetailQuery, DentistDetailDTO>,
+                GetDentistDetailQueryHandler>();
+
+            services.AddScoped<IRequestHandler<UpdateDentistCommand>, UpdateDentistCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteDentistCommand>, DeleteDentistCommandHandler>();
 
             return services;
         }

@@ -1,8 +1,4 @@
-﻿using Prodentia.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
-using Prodentia.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Prodentia.Domain.Entities;
 
 namespace Prodentia.Application.Contracts.Repositories
 {
