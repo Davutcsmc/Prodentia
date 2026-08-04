@@ -1,0 +1,37 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Prodentia.API.DTOs.Appointments;
+using Prodentia.Application.Features.Appointments.Commands.CreateAppointment;
+using Prodentia.Application.Utilities;
+
+namespace Prodentia.API.Controllers
+{
+    [ApiController]
+    [Route("api/appointments")]
+    public class AppointmentsController : ControllerBase
+    {
+        private readonly IMediator _mediator;
+
+        public AppointmentsController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+                
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateAppointmentDTO createAppointmentDTO)
+        {
+            var command = new CreateAppointmentCommand
+            {
+                DentistId = createAppointmentDTO.DentistId,
+                PatientId = createAppointmentDTO.PatientId,
+                DentalOfficeId = createAppointmentDTO.DentalOfficeId,
+                StartDate = createAppointmentDTO.StartDate,
+                EndDate = createAppointmentDTO.EndDate
+            };
+
+            var result = await _mediator.Send(command);
+            return Ok();
+        }
+
+        
+    }
+}

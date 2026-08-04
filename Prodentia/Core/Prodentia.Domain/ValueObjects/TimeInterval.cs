@@ -7,15 +7,15 @@ namespace Prodentia.Domain.ValueObjects
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
 
-        public TimeInterval(DateTime startTime, DateTime endTime)
+        public TimeInterval(DateTime start, DateTime end)
         {
-            if (startTime > endTime)
+            if (start > end)
             {
                 throw new BusinessRuleException("Start time cannot be later than end time");
             }
 
-            Start = startTime;
-            End = endTime;
+            Start = start;
+            End = end;
         }
     }
 }

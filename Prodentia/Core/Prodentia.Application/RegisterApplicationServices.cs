@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Prodentia.Application.Features.Appointments.Commands.CreateAppointment;
 using Prodentia.Application.Features.DentalOffices.Commands.CreateDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using Prodentia.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
@@ -56,6 +57,8 @@ namespace Prodentia.Application
 
             services.AddScoped<IRequestHandler<UpdateDentistCommand>, UpdateDentistCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteDentistCommand>, DeleteDentistCommandHandler>();
+
+            services.AddScoped<IRequestHandler<CreateAppointmentCommand, Guid>, CreateAppointmentCommandHandler>();
 
             return services;
         }

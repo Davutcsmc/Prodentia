@@ -2,9 +2,6 @@
 using Prodentia.Application.Contracts.Repositories;
 using Prodentia.Application.Exceptions;
 using Prodentia.Application.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prodentia.Application.Features.Patients.Commands.DeletePatient
 {
@@ -14,7 +11,7 @@ namespace Prodentia.Application.Features.Patients.Commands.DeletePatient
         private readonly IPatientRepository _patientRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeletePatientCommandHandler(IPatientRepository patientRepository, 
+        public DeletePatientCommandHandler(IPatientRepository patientRepository,
             IUnitOfWork unitOfWork)
         {
             _patientRepository = patientRepository;
