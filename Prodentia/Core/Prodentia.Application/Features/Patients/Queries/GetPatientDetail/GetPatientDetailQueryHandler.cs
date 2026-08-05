@@ -23,7 +23,6 @@ namespace Prodentia.Application.Features.Patients.Queries.GetPatientDetail
 
             if (patient is null)
             {
-                // Handle the case when the patient is not found
                 throw new NotFoundException("Patient not found");
             }
 

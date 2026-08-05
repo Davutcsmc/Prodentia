@@ -14,8 +14,8 @@ Accept: application/json
 POST {{Prodentia.API_HostAddress}}
 Content-Type: application/json
 {
-  "name": "user name 002 delete",
-  "email": "deleteuser002@example.com"
+  "name": "patient004",
+  "email": "patient004@example.com"
 }
 
 ###

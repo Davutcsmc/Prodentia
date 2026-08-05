@@ -14,7 +14,7 @@ Accept: application/json
 POST {{Prodentia.API_HostAddress}}
 Content-Type: application/json
 {
-  "name": "Dental Office A001"
+  "name": "Dental Office B002"
 }
 
 ###

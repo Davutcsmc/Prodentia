@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prodentia.API.DTOs.Appointments;
 using Prodentia.Application.Features.Appointments.Commands.CreateAppointment;
+using Prodentia.Application.Features.Appointments.Queries.GetAppointmentDetail;
+using Prodentia.Application.Features.Appointments.Queries.GetAppointmentsList;
+using Prodentia.Application.Features.Dentists.Queries.GetDentistDetail;
 using Prodentia.Application.Utilities;
 
 namespace Prodentia.API.Controllers
@@ -15,7 +18,22 @@ namespace Prodentia.API.Controllers
         {
             _mediator = mediator;
         }
-                
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AppointmentDetailDTO>> Get(Guid id)
+        {
+            var query = new GetAppointmentDetailQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<AppointmentsListDTO>>> Get([FromQuery] GetAppointmentListQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAppointmentDTO createAppointmentDTO)
         {

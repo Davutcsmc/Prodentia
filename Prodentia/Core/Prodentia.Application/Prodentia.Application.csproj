@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Prodentia.Domain\Prodentia.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Appointments\Queries\" />
-  </ItemGroup>
-
 </Project>
