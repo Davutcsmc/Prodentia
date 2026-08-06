@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prodentia.API.DTOs.Appointments;
+using Prodentia.Application.Features.Appointments.Commands.CancelAppointment;
+using Prodentia.Application.Features.Appointments.Commands.CompleteAppointment;
 using Prodentia.Application.Features.Appointments.Commands.CreateAppointment;
 using Prodentia.Application.Features.Appointments.Queries.GetAppointmentDetail;
 using Prodentia.Application.Features.Appointments.Queries.GetAppointmentsList;
@@ -50,6 +52,27 @@ namespace Prodentia.API.Controllers
             return Ok();
         }
 
-        
+        [HttpPost("{id}/complete")]
+        public async Task<IActionResult> Complete(Guid id)
+        {
+            var command = new CompleteAppointmentCommand
+            {
+                Id = id
+            };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("{id}/cancel")]
+        public async Task<IActionResult> Cancel(Guid id)
+        {
+            var command = new CancelAppointmentCommand { Id = id };
+
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+
     }
 }

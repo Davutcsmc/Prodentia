@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Prodentia.Application.Features.Appointments.Commands.CancelAppointment;
+using Prodentia.Application.Features.Appointments.Commands.CompleteAppointment;
 using Prodentia.Application.Features.Appointments.Commands.CreateAppointment;
 using Prodentia.Application.Features.Appointments.Queries.GetAppointmentDetail;
 using Prodentia.Application.Features.Appointments.Queries.GetAppointmentsList;
@@ -65,6 +67,8 @@ namespace Prodentia.Application
                 GetAppointmentDetailQueryHandler>();
             services.AddScoped<IRequestHandler<GetAppointmentListQuery, List<AppointmentsListDTO>>,
                 GetAppointmentListQueryHandler>();
+            services.AddScoped<IRequestHandler<CompleteAppointmentCommand>, CompleteAppointmentCommandHandler>();
+            services.AddScoped<IRequestHandler<CancelAppointmentCommand>, CancelAppointmentCommandHandler>();
 
             return services;
         }

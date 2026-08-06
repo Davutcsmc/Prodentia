@@ -1,6 +1,7 @@
 ﻿using Prodentia.Application.Contracts.Persistence;
 using Prodentia.Application.Contracts.Repositories;
 using Prodentia.Application.Exceptions;
+using Prodentia.Application.Notifications;
 using Prodentia.Application.Utilities;
 using Prodentia.Domain.Entities;
 using Prodentia.Domain.ValueObjects;
@@ -15,11 +16,14 @@ namespace Prodentia.Application.Features.Appointments.Commands.CreateAppointment
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IUnitOfWork _unitOfWork;
 
+        private readonly INotifications _notifications;
+
         public CreateAppointmentCommandHandler(IAppointmentRepository appointmentRepository,
-            IUnitOfWork unitOfWork) 
+            IUnitOfWork unitOfWork, INotifications notifications) 
         {
             _appointmentRepository = appointmentRepository;
             _unitOfWork = unitOfWork;
+            _notifications = notifications;
         }
         
         public async Task<Guid> Handle(CreateAppointmentCommand request)
@@ -37,11 +41,14 @@ namespace Prodentia.Application.Features.Appointments.Commands.CreateAppointment
                 request.DentalOfficeId, 
                 timeInterval);
 
+            Guid? id = null;
+
             try
             {
                 var result = await _appointmentRepository.AddAsync(appointment);
                 await _unitOfWork.Commit();
-                return result.Id;
+
+                id = result.Id;
             }
             catch(Exception ex)
             {
@@ -49,6 +56,11 @@ namespace Prodentia.Application.Features.Appointments.Commands.CreateAppointment
                 throw;
             }
 
+            var appointment1 = await _appointmentRepository.GetByIdAsync(id.Value);
+            var appointmentConfirmationDTO = appointment1!.ToDTO();
+            await _notifications.SendAppointmentNotification(appointmentConfirmationDTO);
+
+            return id.Value;
         }
     }
 }

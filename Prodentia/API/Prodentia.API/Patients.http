@@ -1,7 +1,7 @@
 @Prodentia.API_HostAddress = http://localhost:5022/api/patients
 
 ###
-GET {{Prodentia.API_HostAddress}}?pageNumber=1&pageSize=5&name=user
+GET {{Prodentia.API_HostAddress}}?pageNumber=1&pageSize=5
 Accept: application/json
 
 ###
@@ -20,11 +20,11 @@ Content-Type: application/json
 
 ###
 
-PUT {{Prodentia.API_HostAddress}}/019f7e7b-7d96-7a05-aba4-11ae61c9cc9d
+PUT {{Prodentia.API_HostAddress}}/019fd0fa-f86d-7375-8c85-ad1a60fad2c3
 Content-Type: application/json
 {
-    "name": "user name 002 delete - u",
-    "email": "deleteuser002@example.comu"
+    "name": "patient001",
+    "email": "davutcesmeci58@gmail.com"
 }
 ###
 

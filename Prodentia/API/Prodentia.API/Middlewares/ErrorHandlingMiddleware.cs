@@ -1,4 +1,5 @@
 ﻿using Prodentia.Application.Exceptions;
+using Prodentia.Domain.Exceptions;
 using System.Net;
 using System.Reflection.Metadata;
 using System.Text.Json;
@@ -30,9 +31,13 @@ namespace Prodentia.API.Middlewares
 
             switch (exception)
             {
-                case Application.Exceptions.NotFoundException notFoundException:
+                case NotFoundException notFoundException:
                     statusCode = HttpStatusCode.NotFound;
                     result = notFoundException.Message;
+                    break;
+                case BusinessRuleException businessRuleException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    result = JsonSerializer.Serialize(businessRuleException.Message);
                     break;
                 case CustomValidationException validationException:
                     statusCode = HttpStatusCode.BadRequest;

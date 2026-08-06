@@ -1,5 +1,6 @@
 using Prodentia.Persistance;
 using Prodentia.Application;
+using Prodentia.Infrastructure;
 using Prodentia.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
 builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
 var app = builder.Build();

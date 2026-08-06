@@ -7,6 +7,7 @@
     <Project Path="Core/Prodentia.Domain/Prodentia.Domain.csproj" Id="55607619-b337-48e6-bcfc-0efbff5ebc13" />
   </Folder>
   <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/Prodentia.Infrastructure/Prodentia.Infrastructure.csproj" Id="247a37b3-7610-4878-99c8-8229dc962988" />
     <Project Path="Infrastructure/Prodentia.Persistance/Prodentia.Persistance.csproj" Id="d2f49fa3-77bb-4755-873d-56f1280c8617" />
   </Folder>
   <Folder Name="/Tests/">
